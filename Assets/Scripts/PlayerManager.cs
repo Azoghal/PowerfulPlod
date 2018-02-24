@@ -71,7 +71,7 @@ public class PlayerManager : NetworkBehaviour {
     [ClientRpc]
     public void RpcRespawn()
     {
-        setDefaults();
+        setDefaults(isLocalPlayer);
         Transform _spawnPoint = NetworkManager.singleton.GetStartPosition();
         transform.position = _spawnPoint.position;
 
@@ -86,25 +86,28 @@ public class PlayerManager : NetworkBehaviour {
             WasEnabled[i] = DisableOnDeath[i].enabled;
         }
 
-        setDefaults();
+        setDefaults(true);
 	}
 
-    void setDefaults()
+    void setDefaults(bool local)
     {
-        isDead = false;
-
-        for (int i = 0; i < DisableOnDeath.Length; i++)
+        if (local)
         {
-            DisableOnDeath[i].enabled = WasEnabled[i];
+            isDead = false;
+
+            for (int i = 0; i < DisableOnDeath.Length; i++)
+            {
+                DisableOnDeath[i].enabled = WasEnabled[i];
+            }
+
+            Collider _col = GetComponent<Collider>();
+            if (_col != null)
+                _col.enabled = true;
+
+            Rigidbody _rb = GetComponent<Rigidbody>();
+            if (_rb != null)
+                _rb.useGravity = true;
         }
-
-        Collider _col = GetComponent<Collider>();
-        if (_col != null)
-            _col.enabled = true;
-
-        Rigidbody _rb = GetComponent<Rigidbody>();
-        if (_rb != null)
-            _rb.useGravity = true;
 
         transform.GetChild(0).GetChild(1).GetComponent<SkinnedMeshRenderer>().enabled = true;
 
