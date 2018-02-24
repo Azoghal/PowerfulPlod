@@ -24,5 +24,16 @@ public class WorldRigidBody : NetworkBehaviour {
         transform.GetComponent<Rigidbody>().AddExplosionForce(explodePow * powerModifier, explodePosit, explodeRad);
     }
 
+    [ClientRpc]
+    public void RpcRespawn()
+    {
+        Rigidbody rb = GetComponent<Rigidbody>();
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+        Transform _spawnPoint = NetworkManager.singleton.GetStartPosition();
+        transform.position = _spawnPoint.position + new Vector3(0,4,0);
+
+    }
+
 
 }

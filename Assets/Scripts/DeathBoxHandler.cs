@@ -18,5 +18,14 @@ public class DeathBoxHandler : NetworkBehaviour {
                 serverGameManager.handlePlayerDeath(playerManager); // inform serverGameManager the player has died.
             }
         }
+        else if (other.gameObject.CompareTag("World Rigidbody"))
+        {
+            WorldRigidBody wrb = other.gameObject.GetComponent<WorldRigidBody>();
+
+            if (wrb != null)
+            {
+                serverGameManager.handleWorldRigidBodyRespawn(wrb);
+            }
+        }
     }
 }

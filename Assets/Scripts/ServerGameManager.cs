@@ -6,10 +6,12 @@ using UnityEngine.Networking;
 public class ServerGameManager : NetworkBehaviour {
 
     float respawnTime;
+    float WRBrespawnTime;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         respawnTime = 3f;
+        WRBrespawnTime = 4f;
 	}
 	
 	// Update is called once per frame
@@ -34,6 +36,18 @@ public class ServerGameManager : NetworkBehaviour {
         yield return new WaitForSeconds(respawnTime);
 
         PM.RpcRespawn();
+    }
+
+    public void handleWorldRigidBodyRespawn(WorldRigidBody wrb)
+    {
+        StartCoroutine(respawnWorldRigidbody(wrb));
+    }
+
+    public IEnumerator respawnWorldRigidbody(WorldRigidBody wrb)
+    {
+        yield return new WaitForSeconds(WRBrespawnTime);
+
+        wrb.RpcRespawn();
     }
 
 }
