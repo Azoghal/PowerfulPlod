@@ -17,49 +17,57 @@ public class PlayerManager : NetworkBehaviour {
     private Behaviour[] DisableOnDeath;
     private bool[] WasEnabled;
     
-    void checkDead()
+    //void checkDead()
+    //{
+    //    if (transform.position.y <= -5) // this is moving to server side
+    //    {
+    //        Die();
+    //    }
+    //}
+
+
+    [ClientRpc]
+    public void RpcDie()
     {
-        if (transform.position.y <= -5)
+        if (!isLocalPlayer)
         {
-            Die();
+            transform.GetChild(0).GetChild(1).GetComponent<SkinnedMeshRenderer>();
         }
-    }
-
-    void Die()
-    {
-        if (!isDead)
-            Debug.Log("player has died");
-
-        isDead = true;
-
-        //disable components
-
-        for (int i = 0; i < DisableOnDeath.Length; i++)
+        else
         {
-            DisableOnDeath[i].enabled = false;
+            if (!isDead)
+                Debug.Log("player has died");
+
+            isDead = true;
+
+            //disable components
+
+            for (int i = 0; i < DisableOnDeath.Length; i++)
+            {
+                DisableOnDeath[i].enabled = false;
+            }
+
+            Collider _col = GetComponent<Collider>();
+            if (_col != null)
+                _col.enabled = false;
+
+            Rigidbody _rb = GetComponent<Rigidbody>();
+            if (_rb != null)
+            {
+                _rb.useGravity = false;
+                _rb.velocity = Vector3.zero;
+            }
+
+
+
+            transform.position = new Vector3(0, 3, -5);
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+            transform.GetChild(0).GetChild(1).GetComponent<SkinnedMeshRenderer>().enabled = false;
+
+            // call respawn method
+
+            StartCoroutine(respawn());
         }
-
-        Collider _col = GetComponent<Collider>();
-        if (_col != null)
-            _col.enabled = false;
-
-        Rigidbody _rb = GetComponent<Rigidbody>();
-        if (_rb != null)
-        {
-            _rb.useGravity = false;
-            _rb.velocity = Vector3.zero;
-        }
-           
-
-
-        transform.position = new Vector3(0, 3, -5);
-        transform.rotation = Quaternion.Euler(0,0,0);
-        transform.GetChild(0).GetChild(1).GetComponent<SkinnedMeshRenderer>().enabled = false;
-
-        // call respawn method
-
-        StartCoroutine(respawn());
-
     }
 
     private IEnumerator respawn()
@@ -106,6 +114,6 @@ public class PlayerManager : NetworkBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        checkDead();
+        //checkDead();
 	}
 }
