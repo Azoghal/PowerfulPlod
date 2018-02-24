@@ -57,12 +57,7 @@ public class PlayerController : NetworkBehaviour {
 
                 if (rb != null)
                 {
-                    if (hit.CompareTag("World Rigidbody"))
-                    {
-                        rb.AddExplosionForce(explosionPower * 5, explosionPos, explosionRadius);
-
-                    }
-                    else if (rb.gameObject != transform.gameObject && rb.gameObject.CompareTag("Player"))
+                    if (rb.gameObject != transform.gameObject)
                     {
                         //rb.AddExplosionForce(explosionPower, explosionPos, explosionRadius);
                         // send force to be recieved
@@ -83,7 +78,10 @@ public class PlayerController : NetworkBehaviour {
     [Command]
     void CmdSubmitForce(GameObject hit,float explodePower,Vector3 explodePosition, float explodeRadius)
     {
-        hit.GetComponent<PlayerController>().RpcExecuteKickForce(explodePower,explodePosition,explodeRadius);
+        if (hit.CompareTag("Player"))
+            hit.GetComponent<PlayerController>().RpcExecuteKickForce(explodePower, explodePosition, explodeRadius);
+        else if (hit.CompareTag("World Rigidbody"))
+            hit.GetComponent<WorldRigidBody>().RpcExecuteKickForce(explodePower, explodePosition, explodeRadius);
     }
 
     [ClientRpc]
