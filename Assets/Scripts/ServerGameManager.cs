@@ -5,9 +5,11 @@ using UnityEngine.Networking;
 
 public class ServerGameManager : NetworkBehaviour {
 
+    float respawnTime;
+
 	// Use this for initialization
 	void Start () {
-		
+        respawnTime = 3f;
 	}
 	
 	// Update is called once per frame
@@ -24,5 +26,14 @@ public class ServerGameManager : NetworkBehaviour {
         playerManager.RpcDie();
 
         // TODO: Handle leaderboard.
+        StartCoroutine(handlePlayerSpawn(playerManager));
     }
+
+    public IEnumerator handlePlayerSpawn(PlayerManager PM)
+    {
+        yield return new WaitForSeconds(respawnTime);
+
+        PM.RpcRespawn();
+    }
+
 }

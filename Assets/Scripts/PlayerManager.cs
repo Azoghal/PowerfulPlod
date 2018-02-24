@@ -31,8 +31,7 @@ public class PlayerManager : NetworkBehaviour {
     {
         if (!isLocalPlayer)
         {
-            Debug.Log("Another player has died");
-            transform.GetChild(0).GetChild(1).GetComponent<SkinnedMeshRenderer>().enabled = false;
+            transform.GetChild(0).GetChild(1).GetComponent<SkinnedMeshRenderer>();
         }
         else
         {
@@ -49,7 +48,7 @@ public class PlayerManager : NetworkBehaviour {
             }
 
             Collider _col = GetComponent<Collider>();
-            if (_col != null)
+            if (_col != null) 
                 _col.enabled = false;
 
             Rigidbody _rb = GetComponent<Rigidbody>();
@@ -66,14 +65,12 @@ public class PlayerManager : NetworkBehaviour {
             transform.GetChild(0).GetChild(1).GetComponent<SkinnedMeshRenderer>().enabled = false;
 
             // call respawn method
-
-            StartCoroutine(respawn());
         }
     }
 
-    private IEnumerator respawn()
+    [ClientRpc]
+    public void RpcRespawn()
     {
-        yield return new WaitForSeconds(3f);
         setDefaults();
         Transform _spawnPoint = NetworkManager.singleton.GetStartPosition();
         transform.position = _spawnPoint.position;
