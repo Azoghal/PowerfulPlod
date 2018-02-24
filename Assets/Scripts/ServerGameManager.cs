@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class ServerGameManager : MonoBehaviour {
+public class ServerGameManager : NetworkBehaviour {
 
 	// Use this for initialization
 	void Start () {
@@ -13,4 +14,15 @@ public class ServerGameManager : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    /// <summary>
+    /// Handles player death notification from the death mesh and passes the message forward to clients via RPC, logs the death onto the leaderboard.
+    /// </summary>
+    /// <param name="playerManager">The playerManager of the dieing player</param>
+    public void handlePlayerDeath (PlayerManager playerManager)
+    {
+        playerManager.RpcDie();
+
+        // TODO: Handle leaderboard.
+    }
 }
