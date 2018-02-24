@@ -31,7 +31,7 @@ public class PlayerManager : NetworkBehaviour {
     {
         if (!isLocalPlayer)
         {
-            transform.GetChild(0).GetChild(1).GetComponent<SkinnedMeshRenderer>();
+            transform.GetChild(0).GetChild(1).GetComponent<SkinnedMeshRenderer>().enabled = false;
         }
         else
         {
