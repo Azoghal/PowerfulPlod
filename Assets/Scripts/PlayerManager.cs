@@ -31,7 +31,8 @@ public class PlayerManager : NetworkBehaviour {
     {
         if (!isLocalPlayer)
         {
-            transform.GetChild(0).GetChild(1).GetComponent<SkinnedMeshRenderer>();
+            Debug.Log("Another player has died");
+            transform.GetChild(0).GetChild(1).GetComponent<SkinnedMeshRenderer>().enabled = false;
         }
         else
         {
