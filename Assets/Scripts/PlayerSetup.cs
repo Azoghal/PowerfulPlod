@@ -23,7 +23,7 @@ public class PlayerSetup : NetworkBehaviour {
             {
                 sceneCamera.gameObject.SetActive(false);
             }
-            
+             
         }
 	}
 
