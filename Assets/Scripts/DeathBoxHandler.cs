@@ -16,7 +16,7 @@ public class DeathBoxHandler : NetworkBehaviour {
             if (playerManager != null)
             {
                 //serverGameManager.handlePlayerDeath(playerManager); // inform serverGameManager the player has died.
-                serverGameManager.SendMessage("handlePlayerDeath");
+                serverGameManager.SendMessage("handlePlayerDeath",playerManager);
             }
         }
         else if (other.gameObject.CompareTag("World Rigidbody"))
