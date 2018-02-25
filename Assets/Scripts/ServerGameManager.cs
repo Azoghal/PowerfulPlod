@@ -8,10 +8,13 @@ public class ServerGameManager : NetworkBehaviour {
     float respawnTime;
     float WRBrespawnTime;
 
+
     // Use this for initialization
     void Start () {
+
         respawnTime = 3f;
         WRBrespawnTime = 4f;
+
 	}
 	
 	// Update is called once per frame
@@ -29,7 +32,12 @@ public class ServerGameManager : NetworkBehaviour {
 
         // TODO: Handle leaderboard.
         StartCoroutine(handlePlayerSpawn(playerManager));
+
+        // maybe havea coroutine for handle player LMS death, which only respawns once all are dead?
+
     }
+
+    
 
     public IEnumerator handlePlayerSpawn(PlayerManager PM)
     {
