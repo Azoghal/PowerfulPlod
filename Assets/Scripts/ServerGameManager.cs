@@ -5,14 +5,12 @@ using UnityEngine.Networking;
 
 public class ServerGameManager : NetworkBehaviour {
 
-    float respawnTime;
     float WRBrespawnTime;
 
 
     // Use this for initialization
     void Start () {
 
-        respawnTime = 3f;
         WRBrespawnTime = 4f;
 
 	}
@@ -22,29 +20,7 @@ public class ServerGameManager : NetworkBehaviour {
 		
 	}
 
-    /// <summary>
-    /// Handles player death notification from the death mesh and passes the message forward to clients via RPC, logs the death onto the leaderboard.
-    /// </summary>
-    /// <param name="playerManager">The playerManager of the dieing player</param>
-    public void handlePlayerDeath (PlayerManager playerManager)
-    {
-        playerManager.RpcDie();
-
-        // TODO: Handle leaderboard.
-        StartCoroutine(handlePlayerSpawn(playerManager));
-
-        // maybe havea coroutine for handle player LMS death, which only respawns once all are dead?
-
-    }
-
     
-
-    public IEnumerator handlePlayerSpawn(PlayerManager PM)
-    {
-        yield return new WaitForSeconds(respawnTime);
-
-        PM.RpcRespawn();
-    }
 
     public void handleWorldRigidBodyRespawn(WorldRigidBody wrb)
     {
