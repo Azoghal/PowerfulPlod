@@ -11,21 +11,18 @@ public class PlayerSetup : NetworkBehaviour {
     Camera sceneCamera;
 
 	void Start () {
-        if (!isLocalPlayer)
-        {
-            for (int i = 0; i < componentsToDisable.Length; i++)
-            {
-                componentsToDisable[i].enabled = false;
-            }
-        }
-        else
+        if (isLocalPlayer)
         {
             sceneCamera = Camera.main;
             if (sceneCamera != null)
             {
                 sceneCamera.gameObject.SetActive(false);
             }
-             
+
+        }
+        else
+        {
+            GetComponent<Camera>().enabled = false;
         }
 	}
 

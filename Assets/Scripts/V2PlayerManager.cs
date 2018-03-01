@@ -14,6 +14,8 @@ public class V2PlayerManager : NetworkBehaviour {
     SkinnedMeshRenderer smr;
     PlayerController pc;
 
+    Transform lookatondeath;
+
     [SyncVar]
     private bool _isDead = false;
     public bool isDead
@@ -49,16 +51,37 @@ public class V2PlayerManager : NetworkBehaviour {
     {
         isDead = true;
         ToggleComponents();
+        Transform _spawnPoint = NetworkManager.singleton.GetStartPosition();
+        transform.position = _spawnPoint.position;
+        transform.rotation = _spawnPoint.rotation;
     }
 
     [ClientRpc]
 
     void RpcSpawn()
     {
-        Transform _spawnPoint = NetworkManager.singleton.GetStartPosition();
-        transform.position = _spawnPoint.position;
+        
         isDead = false;
         ToggleComponents();
 
-    } 
+    }
+
+    // write ienumerator to spawn
+
+    private void Update()
+    {
+        if (Input.GetKeyDown("l"))
+        {
+            RpcSpawn();
+        }
+        if (Input.GetKeyDown("k"))
+        {
+            RpcDie();
+        }
+    }
+
+    // set random respawn position when dies
+    // round robin
+    // move spawnpoints up high
+    // when enabled they drop !
 }

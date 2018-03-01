@@ -252,6 +252,7 @@ GameObject:
   - component: {fileID: 95666477762155388}
   - component: {fileID: 114113503900260244}
   - component: {fileID: 65502269155898034}
+  - component: {fileID: 114531037727372564}
   m_Layer: 0
   m_Name: PlayerV2
   m_TagString: Player
@@ -1056,7 +1057,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 90
+  field of view: 83
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -1180,6 +1181,17 @@ MonoBehaviour:
   - {fileID: 114955613016451362}
   - {fileID: 20988182197841442}
   - {fileID: 81568059053838712}
+--- !u!114 &114531037727372564
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1388099827625706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b38a72cdd7f86740bad2c82365d3797, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114610234329697728
 MonoBehaviour:
   m_ObjectHideFlags: 1

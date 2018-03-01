@@ -31,7 +31,7 @@ public class PlayerController : NetworkBehaviour {
         wantedMode = CursorLockMode.Locked;
         Cursor.lockState = wantedMode;
         PlayerManager Pm = transform.GetComponent<PlayerManager>();
-        Pm.Setup();
+        //Pm.Setup();
 	}
 	
 	// Update is called once per frame

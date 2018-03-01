@@ -34,4 +34,6 @@ public class ServerGameManager : NetworkBehaviour {
         wrb.RpcRespawn();
     }
 
+
+   
 }
