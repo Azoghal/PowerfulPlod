@@ -42,4 +42,23 @@ public class V2PlayerManager : NetworkBehaviour {
         }
 
     }
+
+    [ClientRpc]
+
+    void RpcDie()
+    {
+        isDead = true;
+        ToggleComponents();
+    }
+
+    [ClientRpc]
+
+    void RpcSpawn()
+    {
+        Transform _spawnPoint = NetworkManager.singleton.GetStartPosition();
+        transform.position = _spawnPoint.position;
+        isDead = false;
+        ToggleComponents();
+
+    } 
 }
