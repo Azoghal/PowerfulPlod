@@ -3,8 +3,10 @@ using UnityEngine.Networking;
 
 public class PlayerSetup : NetworkBehaviour {
 
+    
+
     [SerializeField]
-    Behaviour[] componentsToDisable;
+    Behaviour[] componentsToDisable; // for disabling playerController etc
 
     Camera sceneCamera;
 

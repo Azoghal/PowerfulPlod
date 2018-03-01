@@ -84,7 +84,7 @@ public class PlayerManager : NetworkBehaviour {
         for (int i = 0; i < WasEnabled.Length; i++)
         {
             WasEnabled[i] = DisableOnDeath[i].enabled;
-        }
+        } 
 
         setDefaults(true);
 	}
