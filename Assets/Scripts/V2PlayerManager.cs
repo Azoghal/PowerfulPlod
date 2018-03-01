@@ -70,14 +70,18 @@ public class V2PlayerManager : NetworkBehaviour {
 
     private void Update()
     {
-        if (Input.GetKeyDown("l"))
+        if (isLocalPlayer)
         {
-            RpcSpawn();
+            if (Input.GetKeyDown("l"))
+            {
+                RpcSpawn();
+            }
+            if (Input.GetKeyDown("k"))
+            {
+                RpcDie();
+            }
         }
-        if (Input.GetKeyDown("k"))
-        {
-            RpcDie();
-        }
+        
     }
 
     // set random respawn position when dies
