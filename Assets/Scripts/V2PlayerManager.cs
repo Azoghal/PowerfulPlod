@@ -18,7 +18,7 @@ public class V2PlayerManager : NetworkBehaviour {
     Transform lookatondeath;
 
     [SyncVar]
-    private bool _isDead = false;
+    private bool _isDead = true;
     public bool isDead
     {
         get { return _isDead; }
@@ -26,7 +26,7 @@ public class V2PlayerManager : NetworkBehaviour {
     }
 
     void Start () {
-        isDead = false;
+        //isDead = false;
         rb = transform.GetComponent<Rigidbody>();
         bc = transform.GetComponent<BoxCollider>();
         smr = transform.GetChild(0).GetChild(1).GetComponent<SkinnedMeshRenderer>();
@@ -35,6 +35,10 @@ public class V2PlayerManager : NetworkBehaviour {
         if (!isLocalPlayer)
         {
             cam.SetActive(false);
+        }
+        if (isDead == false)
+        {
+            ToggleComponents();
         }
         servergamemanager = GameObject.FindGameObjectWithTag("GameController");
         servergamemanager.SendMessage("playerJoined", this);
