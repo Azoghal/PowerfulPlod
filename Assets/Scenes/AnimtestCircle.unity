@@ -375,6 +375,7 @@ GameObject:
   - component: {fileID: 519083213}
   - component: {fileID: 519083212}
   - component: {fileID: 519083215}
+  - component: {fileID: 519083216}
   m_Layer: 0
   m_Name: ServerGameManager
   m_TagString: GameController
@@ -444,9 +445,20 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 519083211}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9f605f9cd65b13d4da60410fd12c3ce0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &519083216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 519083211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a55521e57c024041a4d96215a4182b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &616260004

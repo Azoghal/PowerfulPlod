@@ -46,10 +46,7 @@ public class LMSGameMode : NetworkBehaviour {
         }
     }
 
-    public void playerLeft(V2PlayerManager PlayMan)
-    {
-        playerJoined(PlayMan);
-    }
+    
 
     void addToDeadPlayers(V2PlayerManager v)
     {
