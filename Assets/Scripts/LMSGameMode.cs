@@ -6,49 +6,95 @@ using UnityEngine.Networking;
 public class LMSGameMode : NetworkBehaviour {
 
     int ConnectedPlayerCount;
-    PlayerManager[] deadPlayers; // set size to connectedPlayercount -1. if full, credit last alive and respawn all
+    V2PlayerManager[] deadPlayers; // set size to connectedPlayercount -1. if full, credit last alive and respawn all
     int nextDeathIndex;
     float respawnTime;
+    bool matchable;
 
 	// Use this for initialization
 	void Start () {
-        ConnectedPlayerCount = Network.connections.Length;
-        deadPlayers = new PlayerManager[ConnectedPlayerCount];
+        deadPlayers = new V2PlayerManager[20];
+        matchable = false;
+        ConnectedPlayerCount = 0;
         nextDeathIndex = 0;
-        respawnTime = 5;
 	}
 
-    public void handlePlayerDeath(PlayerManager playerManager)
+    public void playerJoined(V2PlayerManager PlayMan)
+    {
+        ConnectedPlayerCount = Network.connections.Length;
+        if (matchable == false)
+        {
+            // add to deadplayers
+            addToDeadPlayers(PlayMan);
+            if (ConnectedPlayerCount == 2)
+            {
+                matchable = true;
+                //spawn in all
+                spawnAll();
+            }
+        }
+        else if (matchable == true)
+        {
+            // add to deadPlayers
+            addToDeadPlayers(PlayMan);
+            if (ConnectedPlayerCount == 1)
+            {
+                matchable = false;
+                // kill off everyone
+                killAllAlive();
+            }
+        }
+    }
+
+    public void playerLeft(V2PlayerManager PlayMan)
+    {
+        playerJoined(PlayMan);
+    }
+
+    void addToDeadPlayers(V2PlayerManager v)
+    {
+        v.RpcDie();
+        deadPlayers[nextDeathIndex] = v;
+        nextDeathIndex++;
+    }
+
+    void spawnAll()
+    {
+        for (int i = 0; i < deadPlayers.Length; i++)
+        {
+            deadPlayers[i].RpcSpawn();
+        }
+    }
+
+    void killAllAlive()
+    {
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        for (int i = 0; i < players.Length; i++)
+        {
+            V2PlayerManager v2pm = players[i].GetComponent<V2PlayerManager>();
+            if (v2pm.isDead == false)
+            {
+                v2pm.RpcDie();
+                deadPlayers[nextDeathIndex] = v2pm;
+                nextDeathIndex++;
+            }
+        }
+    }
+
+
+    public void handlePlayerDeath(V2PlayerManager playerManager)
     {
         playerManager.RpcDie();
-
-        // TODO: Handle leaderboard.
-
         deadPlayers[nextDeathIndex] = playerManager;
         nextDeathIndex++;
 
-        // maybe havea coroutine for handle player LMS death, which only respawns once all are dead?
-
-        // check that more than one person lives
-            
-        if (nextDeathIndex == ConnectedPlayerCount-1) // if one person left
-        {
-
-            //credit the person still alive
-
-            for (int i = 0; i < ConnectedPlayerCount; i++)
-            {
-                StartCoroutine(handlePlayerSpawn(deadPlayers[i]));
-            }
-        }
-
     }
 
-    public IEnumerator handlePlayerSpawn(PlayerManager PM)
+    public IEnumerator handlePlayerSpawn(V2PlayerManager PM)
     {
         yield return new WaitForSeconds(respawnTime);
 
-        PM.RpcRespawn();
+        PM.RpcSpawn();
     }
 
     // Update is called once per frame

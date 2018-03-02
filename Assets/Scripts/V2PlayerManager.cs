@@ -44,6 +44,11 @@ public class V2PlayerManager : NetworkBehaviour {
         servergamemanager.SendMessage("playerJoined", this);
     }
 
+    private void OnDisable()
+    {
+        servergamemanager.SendMessage("playerJoined",this);
+    }
+
     void ToggleComponents() // run this when switching from dead to alive or vice versa
     {
         
