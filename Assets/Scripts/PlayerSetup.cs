@@ -22,7 +22,7 @@ public class PlayerSetup : NetworkBehaviour {
         }
         else
         {
-            GetComponent<Camera>().enabled = false;
+            transform.GetChild(1).gameObject.SetActive(false);
         }
 	}
 

@@ -28,7 +28,7 @@ public class FFAGameMode : NetworkBehaviour {
     /// </summary>
     /// <param name="playerManager">The playerManager of the dieing player</param>
     /// 
-    public void handlePlayerDeath(PlayerManager playerManager)
+    public void handlePlayerDeath(V2PlayerManager playerManager)
     {
         playerManager.RpcDie();
 
@@ -39,13 +39,17 @@ public class FFAGameMode : NetworkBehaviour {
 
     }
 
+    public void playerJoined(V2PlayerManager PlayMan)
+    {
+        Debug.Log("Player Joined");
+        StartCoroutine(handlePlayerSpawn(PlayMan));
+    }
 
-
-    public IEnumerator handlePlayerSpawn(PlayerManager PM)
+    public IEnumerator handlePlayerSpawn(V2PlayerManager PM)
     {
         yield return new WaitForSeconds(respawnTime);
 
-        PM.RpcRespawn();
+        PM.RpcSpawn();
     }
 
     

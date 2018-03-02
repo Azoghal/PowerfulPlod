@@ -5,15 +5,16 @@ using UnityEngine.Networking;
 
 public class V2PlayerManager : NetworkBehaviour {
 
-    
+
     // meshrenderer, box collider in
     // also set gravity
+    GameObject servergamemanager;
 
     Rigidbody rb;
     BoxCollider bc;
     SkinnedMeshRenderer smr;
     PlayerController pc;
-
+    GameObject cam;
     Transform lookatondeath;
 
     [SyncVar]
@@ -25,10 +26,18 @@ public class V2PlayerManager : NetworkBehaviour {
     }
 
     void Start () {
+        isDead = false;
         rb = transform.GetComponent<Rigidbody>();
         bc = transform.GetComponent<BoxCollider>();
         smr = transform.GetChild(0).GetChild(1).GetComponent<SkinnedMeshRenderer>();
         pc = transform.GetComponent<PlayerController>();
+        cam = transform.GetChild(1).gameObject;
+        if (!isLocalPlayer)
+        {
+            cam.SetActive(false);
+        }
+        servergamemanager = GameObject.FindGameObjectWithTag("GameController");
+        servergamemanager.SendMessage("playerJoined", this);
     }
 
     void ToggleComponents() // run this when switching from dead to alive or vice versa
@@ -47,7 +56,7 @@ public class V2PlayerManager : NetworkBehaviour {
 
     [ClientRpc]
 
-    void RpcDie()
+    public void RpcDie()
     {
         isDead = true;
         ToggleComponents();
@@ -58,7 +67,7 @@ public class V2PlayerManager : NetworkBehaviour {
 
     [ClientRpc]
 
-    void RpcSpawn()
+    public void RpcSpawn()
     {
         
         isDead = false;
@@ -70,17 +79,7 @@ public class V2PlayerManager : NetworkBehaviour {
 
     private void Update()
     {
-        if (isLocalPlayer)
-        {
-            if (Input.GetKeyDown("l"))
-            {
-                RpcSpawn();
-            }
-            if (Input.GetKeyDown("k"))
-            {
-                RpcDie();
-            }
-        }
+        
         
     }
 

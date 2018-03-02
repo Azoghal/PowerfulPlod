@@ -11,7 +11,7 @@ public class DeathBoxHandler : NetworkBehaviour {
     {
         if (other.gameObject.tag == "Player")
         {
-            PlayerManager playerManager = other.gameObject.GetComponent<PlayerManager>();
+            V2PlayerManager playerManager = other.gameObject.GetComponent<V2PlayerManager>();
 
             if (playerManager != null)
             {
