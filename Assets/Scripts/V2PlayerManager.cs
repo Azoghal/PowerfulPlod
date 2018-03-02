@@ -38,12 +38,14 @@ public class V2PlayerManager : NetworkBehaviour {
         }
         if (isDead == false)
         {
+            
             ToggleComponents();
+            smr.enabled = true;
         }
         servergamemanager = GameObject.FindGameObjectWithTag("GameController");
         servergamemanager.SendMessage("playerJoined", this);
     }
-
+        
     
 
     void ToggleComponents() // run this when switching from dead to alive or vice versa
@@ -64,6 +66,7 @@ public class V2PlayerManager : NetworkBehaviour {
 
     public void RpcDie()
     {
+        
         isDead = true;
         ToggleComponents();
         Transform _spawnPoint = NetworkManager.singleton.GetStartPosition();
@@ -75,7 +78,7 @@ public class V2PlayerManager : NetworkBehaviour {
 
     public void RpcSpawn()
     {
-        
+        Debug.Log("RpcSpawns");
         isDead = false;
         ToggleComponents();
 

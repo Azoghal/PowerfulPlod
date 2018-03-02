@@ -19,26 +19,32 @@ public class LMSGameMode : NetworkBehaviour {
         nextDeathIndex = 0;
 	}
 
+    
     public void playerJoined(V2PlayerManager PlayMan)
     {
-        ConnectedPlayerCount = Network.connections.Length;
+        ConnectedPlayerCount = NetworkServer.connections.Count;
         if (matchable == false)
         {
+            
             // add to deadplayers
             addToDeadPlayers(PlayMan);
             if (ConnectedPlayerCount == 2)
             {
+                
                 matchable = true;
                 //spawn in all
                 spawnAll();
+                deadPlayers = new V2PlayerManager[20];
             }
         }
         else if (matchable == true)
         {
+            
             // add to deadPlayers
             addToDeadPlayers(PlayMan);
             if (ConnectedPlayerCount == 1)
             {
+                
                 matchable = false;
                 // kill off everyone
                 killAllAlive();
@@ -50,7 +56,6 @@ public class LMSGameMode : NetworkBehaviour {
 
     void addToDeadPlayers(V2PlayerManager v)
     {
-        v.RpcDie();
         deadPlayers[nextDeathIndex] = v;
         nextDeathIndex++;
     }
@@ -60,6 +65,7 @@ public class LMSGameMode : NetworkBehaviour {
         for (int i = 0; i < deadPlayers.Length; i++)
         {
             deadPlayers[i].RpcSpawn();
+            
         }
     }
 
@@ -90,7 +96,7 @@ public class LMSGameMode : NetworkBehaviour {
     public IEnumerator handlePlayerSpawn(V2PlayerManager PM)
     {
         yield return new WaitForSeconds(respawnTime);
-
+        
         PM.RpcSpawn();
     }
 
