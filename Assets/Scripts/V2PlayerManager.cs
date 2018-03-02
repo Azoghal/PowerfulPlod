@@ -35,13 +35,18 @@ public class V2PlayerManager : NetworkBehaviour {
         if (!isLocalPlayer)
         {
             cam.SetActive(false);
+            if (isDead == true)
+            {
+                smr.enabled = false;
+            }
         }
         if (isDead == false)
         {
-            
+
             ToggleComponents();
             smr.enabled = true;
         }
+        
         servergamemanager = GameObject.FindGameObjectWithTag("GameController");
         servergamemanager.SendMessage("playerJoined", this);
     }
