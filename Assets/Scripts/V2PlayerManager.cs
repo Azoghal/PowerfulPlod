@@ -83,7 +83,7 @@ public class V2PlayerManager : NetworkBehaviour {
 
     public void RpcSpawn()
     {
-        Debug.Log("RpcSpawns");
+        
         isDead = false;
         ToggleComponents();
 
