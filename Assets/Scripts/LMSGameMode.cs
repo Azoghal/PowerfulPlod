@@ -14,14 +14,16 @@ public class LMSGameMode : NetworkBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
-        matchable = false;
-        ConnectedPlayerCount = 0;
-        respawnTime = 3;
+        if (isServer)
+        {
+            matchable = false;
+            ConnectedPlayerCount = 0;
+            respawnTime = 3;
+        }
 	}
 
-    
-    public void playerJoined(V2PlayerManager playerManager)
+    [Command]
+    public void CmdPlayerJoined(V2PlayerManager playerManager)
     {
 
         temp = GameObject.FindGameObjectsWithTag("Player");

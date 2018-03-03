@@ -44,7 +44,7 @@ public class V2PlayerManager : NetworkBehaviour {
         else
         {
             servergamemanager = GameObject.FindGameObjectWithTag("GameController");
-            servergamemanager.SendMessage("playerJoined", this);
+            servergamemanager.SendMessage("CmdPlayerJoined", this);
         }
 
 
