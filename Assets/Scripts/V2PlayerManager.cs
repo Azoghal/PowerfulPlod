@@ -71,21 +71,28 @@ public class V2PlayerManager : NetworkBehaviour {
 
     public void RpcDie()
     {
+        if (isDead == false)
+        {
+            isDead = true;
+            ToggleComponents();
+            Transform _spawnPoint = NetworkManager.singleton.GetStartPosition();
+            transform.position = _spawnPoint.position;
+            transform.rotation = _spawnPoint.rotation;
+        }
         
-        isDead = true;
-        ToggleComponents();
-        Transform _spawnPoint = NetworkManager.singleton.GetStartPosition();
-        transform.position = _spawnPoint.position;
-        transform.rotation = _spawnPoint.rotation;
     }
 
     [ClientRpc]
 
     public void RpcSpawn()
     {
+
+        if (isDead == true)
+        {
+            isDead = false;
+            ToggleComponents();
+        }
         
-        isDead = false;
-        ToggleComponents();
 
     }
 

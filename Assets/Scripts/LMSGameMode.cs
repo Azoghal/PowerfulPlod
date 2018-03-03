@@ -64,9 +64,12 @@ public class LMSGameMode : NetworkBehaviour {
         }
 
     }
-    
 
-   
+    private void OnPlayerDisconnected(NetworkPlayer player)
+    {
+        playerLeft(null);
+    }
+
 
     void spawnAll()
     {

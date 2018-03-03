@@ -21,7 +21,7 @@ public class WorldRigidBody : NetworkBehaviour {
 
     public void RpcExecuteKickForce(float explodePow, Vector3 explodePosit, float explodeRad)
     {
-        transform.GetComponent<Rigidbody>().AddExplosionForce(explodePow * powerModifier, explodePosit, explodeRad);
+        transform.GetComponent<Rigidbody>().AddExplosionForce(explodePow * powerModifier, explodePosit, explodeRad,0.1f);
     }
 
     [ClientRpc]
