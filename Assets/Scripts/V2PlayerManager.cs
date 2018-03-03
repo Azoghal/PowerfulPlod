@@ -32,6 +32,7 @@ public class V2PlayerManager : NetworkBehaviour {
         smr = transform.GetChild(0).GetChild(1).GetComponent<SkinnedMeshRenderer>();
         pc = transform.GetComponent<PlayerController>();
         cam = transform.GetChild(1).gameObject;
+
         if (!isLocalPlayer)
         {
             cam.SetActive(false);
@@ -40,29 +41,48 @@ public class V2PlayerManager : NetworkBehaviour {
                 smr.enabled = false;
             }
         }
+        else
+        {
+            servergamemanager = GameObject.FindGameObjectWithTag("GameController");
+            servergamemanager.SendMessage("playerJoined", this);
+        }
+
+
         if (isDead == false)
         {
 
-            ToggleComponents();
+            ComponentsLive();
             smr.enabled = true;
         }
         
-        servergamemanager = GameObject.FindGameObjectWithTag("GameController");
-        servergamemanager.SendMessage("playerJoined", this);
+        
     }
         
     
 
-    void ToggleComponents() // run this when switching from dead to alive or vice versa
+    void ComponentsDie() // run this when switching from dead to alive or vice versa
     {
         
         rb.velocity = Vector3.zero;
-        rb.useGravity = !rb.useGravity;
-        bc.enabled = !bc.enabled;
-        smr.enabled = !smr.enabled;
+        rb.useGravity = false;
+        bc.enabled = false;
+        smr.enabled = false;
         if (isLocalPlayer)
         {
-            pc.enabled = !pc.enabled;
+            pc.enabled = false;
+        }
+
+    }
+
+    void ComponentsLive() // run this when switching from dead to alive or vice versa
+    {
+
+        rb.useGravity = true;
+        bc.enabled = true;
+        smr.enabled = true;
+        if (isLocalPlayer)
+        {
+            pc.enabled = true;
         }
 
     }
@@ -74,7 +94,7 @@ public class V2PlayerManager : NetworkBehaviour {
         if (isDead == false)
         {
             isDead = true;
-            ToggleComponents();
+            ComponentsDie();
             Transform _spawnPoint = NetworkManager.singleton.GetStartPosition();
             transform.position = _spawnPoint.position;
             transform.rotation = _spawnPoint.rotation;
@@ -90,7 +110,7 @@ public class V2PlayerManager : NetworkBehaviour {
         if (isDead == true)
         {
             isDead = false;
-            ToggleComponents();
+            ComponentsLive();
         }
         
 
