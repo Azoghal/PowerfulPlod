@@ -12,5 +12,7 @@ namespace Assets.Scripts
         void handlePlayerJoined(GameObject player);
 
         void handlePlayerDeath(V2PlayerManager playerManager);
+
+        void handleLoading();
     }
 }

@@ -13,6 +13,12 @@ public class ServerGameManager : NetworkBehaviour {
         currentGamemode = gameObject.GetComponent<LMSGameMode>();
         WRBrespawnTime = 4f;
 	}
+
+    public void ChangeGamemode(Assets.Scripts.IGamemode newGamemode)
+    {
+        currentGamemode = newGamemode;
+        newGamemode.handleLoading();
+    }
 	
 	// Update is called once per frame
 	void Update () {

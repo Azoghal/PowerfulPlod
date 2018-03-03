@@ -22,10 +22,15 @@ public class LMSGameMode : NetworkBehaviour, Assets.Scripts.IGamemode {
         }
 	}
 
+    public void handleLoading()
+    {
+
+    }
+
     public void handlePlayerJoined(GameObject player)
     {
         Debug.Log("Player has joined");
-        if (isServer) { Debug.Log("I'm the server"); }
+
         temp = GameObject.FindGameObjectsWithTag("Player");
         Players = new V2PlayerManager[temp.Length];
         for (int i = 0; i < temp.Length; i++)

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class FFAGameMode : NetworkBehaviour {
+public class FFAGameMode : NetworkBehaviour, Assets.Scripts.IGamemode {
 
     float respawnTime;
 
@@ -12,6 +12,11 @@ public class FFAGameMode : NetworkBehaviour {
     {
 
         respawnTime = 3f;
+
+    }
+
+    public void handleLoading()
+    {
 
     }
 
