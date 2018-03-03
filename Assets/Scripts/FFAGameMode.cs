@@ -41,7 +41,7 @@ public class FFAGameMode : NetworkBehaviour {
 
     public void playerJoined(V2PlayerManager PlayMan)
     {
-        Debug.Log("Player Joined");
+        //Debug.Log("Player Joined");
         StartCoroutine(handlePlayerSpawn(PlayMan));
     }
 
