@@ -8,7 +8,7 @@ public class V2PlayerManager : NetworkBehaviour {
 
     // meshrenderer, box collider in
     // also set gravity
-    GameObject servergamemanager;
+    ServerGameManager servergamemanager;
 
     Rigidbody rb;
     BoxCollider bc;
@@ -32,6 +32,7 @@ public class V2PlayerManager : NetworkBehaviour {
         smr = transform.GetChild(0).GetChild(1).GetComponent<SkinnedMeshRenderer>();
         pc = transform.GetComponent<PlayerController>();
         cam = transform.GetChild(1).gameObject;
+        servergamemanager = (ServerGameManager)GameObject.FindGameObjectWithTag("GameController").GetComponent<ServerGameManager>();
 
         if (!isLocalPlayer)
         {
@@ -43,8 +44,7 @@ public class V2PlayerManager : NetworkBehaviour {
         }
         else
         {
-            servergamemanager = GameObject.FindGameObjectWithTag("GameController");
-            servergamemanager.SendMessage("CmdPlayerJoined", this);
+            CmdPlayerJoined();
         }
 
 
@@ -57,7 +57,12 @@ public class V2PlayerManager : NetworkBehaviour {
         
         
     }
-        
+    
+    [Command]
+    void CmdPlayerJoined()
+    {
+        servergamemanager.currentGamemode.handlePlayerJoined(this.gameObject);
+    }
     
 
     void ComponentsDie() // run this when switching from dead to alive or vice versa

@@ -7,8 +7,6 @@ public class FFAGameMode : NetworkBehaviour {
 
     float respawnTime;
 
-
-
     // Use this for initialization
     void Start()
     {
@@ -39,10 +37,9 @@ public class FFAGameMode : NetworkBehaviour {
 
     }
 
-    public void playerJoined(V2PlayerManager PlayMan)
+    public void handlePlayerJoined(GameObject player)
     {
-        //Debug.Log("Player Joined");
-        StartCoroutine(handlePlayerSpawn(PlayMan));
+        StartCoroutine(handlePlayerSpawn(player.GetComponent<V2PlayerManager>()));
     }
 
     public IEnumerator handlePlayerSpawn(V2PlayerManager PM)

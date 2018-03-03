@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class LMSGameMode : NetworkBehaviour {
+public class LMSGameMode : NetworkBehaviour, Assets.Scripts.IGamemode {
 
     int ConnectedPlayerCount;
     V2PlayerManager[] Players;
@@ -22,10 +22,10 @@ public class LMSGameMode : NetworkBehaviour {
         }
 	}
 
-    [Command]
-    public void CmdPlayerJoined(V2PlayerManager playerManager)
+    public void handlePlayerJoined(GameObject player)
     {
-
+        Debug.Log("Player has joined");
+        if (isServer) { Debug.Log("I'm the server"); }
         temp = GameObject.FindGameObjectsWithTag("Player");
         Players = new V2PlayerManager[temp.Length];
         for (int i = 0; i < temp.Length; i++)

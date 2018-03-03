@@ -6,13 +6,12 @@ using UnityEngine.Networking;
 public class ServerGameManager : NetworkBehaviour {
 
     float WRBrespawnTime;
-
+    public Assets.Scripts.IGamemode currentGamemode;
 
     // Use this for initialization
     void Start () {
-
+        currentGamemode = gameObject.GetComponent<LMSGameMode>();
         WRBrespawnTime = 4f;
-
 	}
 	
 	// Update is called once per frame
