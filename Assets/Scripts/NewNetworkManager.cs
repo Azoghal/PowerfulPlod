@@ -15,6 +15,7 @@ public class NewNetworkManager : NetworkManager {
 
     public override void OnServerDisconnect(NetworkConnection conn)
     {
+        Debug.Log("Yes");
         currentGamemode.handlePlayerLeft();
         base.OnServerDisconnect(conn);
     }
