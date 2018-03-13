@@ -47,6 +47,11 @@ public class FFAGameMode : NetworkBehaviour, Assets.Scripts.IGamemode {
         StartCoroutine(handlePlayerSpawn(player.GetComponent<V2PlayerManager>()));
     }
 
+    public void handlePlayerLeft()
+    {
+        Debug.Log("Left");
+    }
+
     public IEnumerator handlePlayerSpawn(V2PlayerManager PM)
     {
         yield return new WaitForSeconds(respawnTime);

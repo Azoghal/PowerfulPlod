@@ -53,6 +53,11 @@ public class LMSGameMode : NetworkBehaviour, Assets.Scripts.IGamemode {
 
     }
 
+    public void handlePlayerLeft()
+    {
+        Debug.Log("Left");
+    }
+
     public void playerLeft(V2PlayerManager playerManager)
     {
         temp = GameObject.FindGameObjectsWithTag("Player");

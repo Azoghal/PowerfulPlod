@@ -13,6 +13,8 @@ namespace Assets.Scripts
 
         void handlePlayerDeath(V2PlayerManager playerManager);
 
+        void handlePlayerLeft();
+
         void handleLoading();
     }
 }
