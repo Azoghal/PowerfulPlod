@@ -113,7 +113,7 @@ public class LMSGameMode : NetworkBehaviour, Assets.Scripts.IGamemode {
     {
         for (int i = 0; i < Players.Length; i++)
         {
-            Players[i].RpcSpawn();
+            StartCoroutine(handlePlayerSpawn(Players[i]));
         }
     }
 
@@ -140,7 +140,7 @@ public class LMSGameMode : NetworkBehaviour, Assets.Scripts.IGamemode {
                 count++;
             }
         }
-        Debug.Log(count);
+        Debug.Log(count + "left alive");
         if (count == 1)
         {
             killAllAlive();
