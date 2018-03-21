@@ -31,15 +31,11 @@ public class LMSGameMode : NetworkBehaviour, Assets.Scripts.IGamemode {
     {
         Debug.Log("Player has joined");
 
-        temp = GameObject.FindGameObjectsWithTag("Player");
-        Players = new V2PlayerManager[temp.Length];
-        for (int i = 0; i < temp.Length; i++)
-        {
-            Players[i] = temp[i].GetComponent<V2PlayerManager>();
-        }
+        Players = grabPlayers();
+        ConnectedPlayerCount = Players.Length;
         if (matchable == false)
         {
-            if (Players.Length == 2)
+            if (ConnectedPlayerCount == 2)
             {
                 //spawn all and start game
                 spawnAll();
@@ -53,9 +49,35 @@ public class LMSGameMode : NetworkBehaviour, Assets.Scripts.IGamemode {
 
     }
 
+    private V2PlayerManager[] grabPlayers()
+    {
+        temp = GameObject.FindGameObjectsWithTag("Player");
+        Players = new V2PlayerManager[temp.Length];
+        for (int i = 0; i < temp.Length; i++)
+        {
+            Players[i] = temp[i].GetComponent<V2PlayerManager>();
+        }
+        return Players;
+    }
+
     public void handlePlayerLeft()
     {
+        ConnectedPlayerCount--;
         Debug.Log("Left");
+        Players = grabPlayers();
+        Debug.Log(Players.Length);
+        if (matchable == true)
+        {
+            if (ConnectedPlayerCount < 2)
+            {
+                Debug.Log("Absolutely");
+                killAllAlive();
+                matchable = false;
+            }
+        }
+        
+        
+        
     }
 
     public void playerLeft(V2PlayerManager playerManager)

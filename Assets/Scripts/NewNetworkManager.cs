@@ -15,9 +15,21 @@ public class NewNetworkManager : NetworkManager {
 
     public override void OnServerDisconnect(NetworkConnection conn)
     {
+        NetworkServer.DestroyPlayersForConnection(conn);
+
+        if (conn.lastError != NetworkError.Ok)
+        {
+            if (LogFilter.logError)
+            {
+                Debug.LogError("ServerDisconnected due to error: " + conn.lastError);
+            }
+        }
+
+        currentGamemode = sgm.currentGamemode;
         Debug.Log("Yes");
         currentGamemode.handlePlayerLeft();
         base.OnServerDisconnect(conn);
+        
     }
 
     // Update is called once per frame
