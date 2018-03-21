@@ -32,6 +32,13 @@ public class NewNetworkManager : NetworkManager {
         
     }
 
+    public override void OnStopHost()
+    {
+        currentGamemode = sgm.currentGamemode;
+        currentGamemode.handleStopHost();
+        base.OnStopHost();
+    }
+
     // Update is called once per frame
     void Update () {
 		

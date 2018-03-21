@@ -8,7 +8,6 @@ public class LMSGameMode : NetworkBehaviour, Assets.Scripts.IGamemode {
     int ConnectedPlayerCount;
     V2PlayerManager[] Players;
     GameObject[] temp;
-    int nextDeathIndex;
     float respawnTime;
     bool matchable;
 
@@ -75,9 +74,14 @@ public class LMSGameMode : NetworkBehaviour, Assets.Scripts.IGamemode {
                 matchable = false;
             }
         }
-        
-        
-        
+    }
+
+    public void handleStopHost()
+    {
+        matchable = false;
+        ConnectedPlayerCount = 0;
+        Players = new V2PlayerManager[1];
+
     }
 
     public void playerLeft(V2PlayerManager playerManager)

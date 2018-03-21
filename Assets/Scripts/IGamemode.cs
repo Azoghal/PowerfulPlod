@@ -15,6 +15,8 @@ namespace Assets.Scripts
 
         void handlePlayerLeft();
 
+        void handleStopHost();
+
         void handleLoading();
     }
 }

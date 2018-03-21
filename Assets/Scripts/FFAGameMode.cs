@@ -52,6 +52,11 @@ public class FFAGameMode : NetworkBehaviour, Assets.Scripts.IGamemode {
         Debug.Log("Left");
     }
 
+    public void handleStopHost()
+    {
+        
+    }
+
     public IEnumerator handlePlayerSpawn(V2PlayerManager PM)
     {
         yield return new WaitForSeconds(respawnTime);
