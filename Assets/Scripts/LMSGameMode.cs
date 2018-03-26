@@ -70,7 +70,7 @@ public class LMSGameMode : NetworkBehaviour, Assets.Scripts.IGamemode {
         {
             if (ConnectedPlayerCount < 2)
             {
-                Debug.Log("Absolutely");
+                
                 killAllAlive();
                 matchable = false;
             }
@@ -120,7 +120,6 @@ public class LMSGameMode : NetworkBehaviour, Assets.Scripts.IGamemode {
         for (int i = 0; i < Players.Length; i++)
         {
             StartCoroutine(handlePlayerSpawn(Players[i]));
-            PlayersAlive++;
         }
     }
 
@@ -141,10 +140,10 @@ public class LMSGameMode : NetworkBehaviour, Assets.Scripts.IGamemode {
     {
         playerManager.RpcDie();
         PlayersAlive--;
-        Debug.Log(PlayersAlive + "left alive");
         if (PlayersAlive == 1)
         {
-            Debug.Log("kill and spawn");
+            killAllAlive();
+            spawnAll();
         }
         
     }
@@ -154,6 +153,7 @@ public class LMSGameMode : NetworkBehaviour, Assets.Scripts.IGamemode {
         yield return new WaitForSeconds(respawnTime);
         
         PM.RpcSpawn();
+        PlayersAlive++;
     }
 
     // Update is called once per frame
