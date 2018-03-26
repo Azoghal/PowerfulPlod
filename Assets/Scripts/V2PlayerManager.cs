@@ -99,6 +99,7 @@ public class V2PlayerManager : NetworkBehaviour {
         if (isDead == false)
         {
             isDead = true;
+            Debug.Log("killed plater");
             ComponentsDie();
             Transform _spawnPoint = NetworkManager.singleton.GetStartPosition();
             transform.position = _spawnPoint.position;
@@ -111,7 +112,7 @@ public class V2PlayerManager : NetworkBehaviour {
 
     public void RpcSpawn()
     {
-
+        Debug.Log("spanwed");
         if (isDead == true)
         {
             isDead = false;

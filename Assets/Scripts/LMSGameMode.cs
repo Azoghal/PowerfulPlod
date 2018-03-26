@@ -9,6 +9,7 @@ public class LMSGameMode : NetworkBehaviour, Assets.Scripts.IGamemode {
     V2PlayerManager[] Players;
     GameObject[] temp;
     float respawnTime;
+    int PlayersAlive;
     bool matchable;
 
 	// Use this for initialization
@@ -29,7 +30,7 @@ public class LMSGameMode : NetworkBehaviour, Assets.Scripts.IGamemode {
     public void handlePlayerJoined(GameObject player)
     {
         Debug.Log("Player has joined");
-
+        
         Players = grabPlayers();
         ConnectedPlayerCount = Players.Length;
         if (matchable == false)
@@ -86,6 +87,10 @@ public class LMSGameMode : NetworkBehaviour, Assets.Scripts.IGamemode {
 
     public void playerLeft(V2PlayerManager playerManager)
     {
+        if (playerManager.isDead == false)
+        {
+            PlayersAlive--;
+        }
         temp = GameObject.FindGameObjectsWithTag("Player");
         Players = new V2PlayerManager[temp.Length];
         for (int i = 0; i < temp.Length; i++)
@@ -111,9 +116,11 @@ public class LMSGameMode : NetworkBehaviour, Assets.Scripts.IGamemode {
 
     void spawnAll()
     {
+        PlayersAlive = 0;
         for (int i = 0; i < Players.Length; i++)
         {
             StartCoroutine(handlePlayerSpawn(Players[i]));
+            PlayersAlive++;
         }
     }
 
@@ -126,25 +133,18 @@ public class LMSGameMode : NetworkBehaviour, Assets.Scripts.IGamemode {
                 Players[i].RpcDie();
             }
         }
+        PlayersAlive = 0;
     }
 
 
     public void handlePlayerDeath(V2PlayerManager playerManager)
     {
-        int count = 0;
         playerManager.RpcDie();
-        for (int i = 0; i < Players.Length; i++)
+        PlayersAlive--;
+        Debug.Log(PlayersAlive + "left alive");
+        if (PlayersAlive == 1)
         {
-            if (Players[i].isDead == false)
-            {
-                count++;
-            }
-        }
-        Debug.Log(count + "left alive");
-        if (count == 1)
-        {
-            killAllAlive();
-            spawnAll();
+            Debug.Log("kill and spawn");
         }
         
     }
