@@ -142,6 +142,13 @@ public class LMSGameMode : NetworkBehaviour, Assets.Scripts.IGamemode {
         PlayersAlive--;
         if (PlayersAlive == 1)
         {
+            for (int i = 0; i < Players.Length; i++)
+            {
+                if (Players[i].isDead == false)
+                {
+                    Debug.Log(Players[i].name);
+                }
+            }
             killAllAlive();
             spawnAll();
         }

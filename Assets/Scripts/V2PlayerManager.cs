@@ -16,6 +16,7 @@ public class V2PlayerManager : NetworkBehaviour {
     PlayerController pc;
     GameObject cam;
     Transform lookatondeath;
+    public string name;
 
     [SyncVar]
     private bool _isDead = true;
@@ -33,7 +34,7 @@ public class V2PlayerManager : NetworkBehaviour {
         pc = transform.GetComponent<PlayerController>();
         cam = transform.GetChild(1).gameObject;
         servergamemanager = (ServerGameManager)GameObject.FindGameObjectWithTag("GameController").GetComponent<ServerGameManager>();
-
+        name = SystemInfo.deviceName;
         if (!isLocalPlayer)
         {
             cam.SetActive(false);
