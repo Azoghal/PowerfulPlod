@@ -6,7 +6,7 @@ using UnityEngine.Networking;
 
 public class MainMenuManager : MonoBehaviour {
 
-    string currentName;
+    public string currentName;
     public InputField nameIn;
     public InputField IpIn;
     public NewNetworkManager net;
@@ -30,7 +30,7 @@ public class MainMenuManager : MonoBehaviour {
         {
             net.networkPort = 7777;
             net.StartHost();
-            this.enabled = false;
+            transform.position = new Vector3(10000,0,0);
         }
         
     }
@@ -43,7 +43,7 @@ public class MainMenuManager : MonoBehaviour {
         {
             net.networkPort = 7777;
             net.StartClient();
-            this.enabled = false;
+            transform.position = new Vector3(10000, 0, 0);
         }
     }
 }

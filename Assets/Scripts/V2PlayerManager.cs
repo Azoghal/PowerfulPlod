@@ -17,6 +17,7 @@ public class V2PlayerManager : NetworkBehaviour {
     PlayerController pc;
     GameObject cam;
     Transform lookatondeath;
+    public MainMenuManager mmm;
     
     [SyncVar]
     public string name;
@@ -31,15 +32,15 @@ public class V2PlayerManager : NetworkBehaviour {
 
     void Start () {
         //isDead = false;
-        name = "undefined";
+        
         rb = transform.GetComponent<Rigidbody>();
         bc = transform.GetComponent<BoxCollider>();
         smr = transform.GetChild(0).GetChild(1).GetComponent<SkinnedMeshRenderer>();
         pc = transform.GetComponent<PlayerController>();
         cam = transform.GetChild(1).gameObject;
-        
+        mmm = GameObject.FindGameObjectWithTag("mainMenu").GetComponent<MainMenuManager>();
         servergamemanager = (ServerGameManager)GameObject.FindGameObjectWithTag("GameController").GetComponent<ServerGameManager>();
-        name = SystemInfo.deviceName;
+        
         if (!isLocalPlayer)
         {
             cam.SetActive(false);
@@ -48,8 +49,10 @@ public class V2PlayerManager : NetworkBehaviour {
                 smr.enabled = false;
             }
         }
+
         else
         {
+            name = mmm.currentName;
             CmdPlayerJoined();
         }
 

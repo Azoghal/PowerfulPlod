@@ -1193,6 +1193,12 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1343986925}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1347118800 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114302411270719924, guid: 3b5efa9bd009f924ba5918a73fef9307,
+    type: 2}
+  m_PrefabInternal: {fileID: 1705809925}
+  m_Script: {fileID: 575553740, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &1388897172
 GameObject:
   m_ObjectHideFlags: 0
@@ -1753,6 +1759,15 @@ Prefab:
         type: 2}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114386551310924524, guid: 3b5efa9bd009f924ba5918a73fef9307,
+        type: 2}
+      propertyPath: IpIn
+      value: 
+      objectReference: {fileID: 1347118800}
+    - target: {fileID: 1453313330961432, guid: 3b5efa9bd009f924ba5918a73fef9307, type: 2}
+      propertyPath: m_TagString
+      value: mainMenu
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3b5efa9bd009f924ba5918a73fef9307, type: 2}

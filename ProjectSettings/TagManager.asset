@@ -6,6 +6,7 @@ TagManager:
   tags:
   - World Rigidbody
   - DeathBox
+  - mainMenu
   layers:
   - Default
   - TransparentFX
