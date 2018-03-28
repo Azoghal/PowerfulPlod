@@ -32,6 +32,8 @@ public class NewNetworkManager : NetworkManager {
         
     }
 
+   
+
     public override void OnStopHost()
     {
         currentGamemode = sgm.currentGamemode;

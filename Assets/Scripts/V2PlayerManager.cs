@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
+
 public class V2PlayerManager : NetworkBehaviour {
 
 
@@ -16,6 +17,7 @@ public class V2PlayerManager : NetworkBehaviour {
     PlayerController pc;
     GameObject cam;
     Transform lookatondeath;
+    
     public string name;
 
     [SyncVar]
@@ -33,6 +35,7 @@ public class V2PlayerManager : NetworkBehaviour {
         smr = transform.GetChild(0).GetChild(1).GetComponent<SkinnedMeshRenderer>();
         pc = transform.GetComponent<PlayerController>();
         cam = transform.GetChild(1).gameObject;
+        
         servergamemanager = (ServerGameManager)GameObject.FindGameObjectWithTag("GameController").GetComponent<ServerGameManager>();
         name = SystemInfo.deviceName;
         if (!isLocalPlayer)
