@@ -18,6 +18,7 @@ public class V2PlayerManager : NetworkBehaviour {
     GameObject cam;
     Transform lookatondeath;
     
+    [SyncVar]
     public string name;
 
     [SyncVar]
@@ -30,6 +31,7 @@ public class V2PlayerManager : NetworkBehaviour {
 
     void Start () {
         //isDead = false;
+        name = "undefined";
         rb = transform.GetComponent<Rigidbody>();
         bc = transform.GetComponent<BoxCollider>();
         smr = transform.GetChild(0).GetChild(1).GetComponent<SkinnedMeshRenderer>();
