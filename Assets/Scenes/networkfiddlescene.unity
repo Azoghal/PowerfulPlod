@@ -1674,11 +1674,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4879469343592226, guid: 3b5efa9bd009f924ba5918a73fef9307, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -262.4649
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4879469343592226, guid: 3b5efa9bd009f924ba5918a73fef9307, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 141.48596
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4879469343592226, guid: 3b5efa9bd009f924ba5918a73fef9307, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1744,6 +1744,16 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 224544116109797074, guid: 3b5efa9bd009f924ba5918a73fef9307,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224544116109797074, guid: 3b5efa9bd009f924ba5918a73fef9307,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3b5efa9bd009f924ba5918a73fef9307, type: 2}
   m_IsPrefabParent: 0
@@ -1767,6 +1777,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1713067507}
   - component: {fileID: 1713067506}
+  - component: {fileID: 1713067505}
   m_Layer: 0
   m_Name: _NetworkManager
   m_TagString: Untagged
@@ -1774,6 +1785,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1713067505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1713067504}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 227461547, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manager: {fileID: 0}
+  showGUI: 0
+  offsetX: 0
+  offsetY: 0
 --- !u!114 &1713067506
 MonoBehaviour:
   m_ObjectHideFlags: 0

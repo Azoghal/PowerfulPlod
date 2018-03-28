@@ -5,6 +5,9 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/AnimtestCircle.unity
     guid: b1dc854eb0a4ce94bbf8ebe2c17e6138
+  - enabled: 1
+    path: Assets/Scenes/networkfiddlescene.unity
+    guid: cd0e6949cbf790f4ba31d0f869eb08e1

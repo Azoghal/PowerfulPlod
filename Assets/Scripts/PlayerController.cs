@@ -20,6 +20,7 @@ public class PlayerController : NetworkBehaviour {
     Camera cam;
     bool blownUp;
     CursorLockMode wantedMode;
+    GameObject exMenu;
 
     // Use this for initialization
     void Start () {
@@ -65,6 +66,10 @@ public class PlayerController : NetworkBehaviour {
                     }
                 }
             }
+        }
+        if (Input.GetKeyDown("escape"))
+        {
+            Instantiate<GameObject>(exMenu);
         }
 
         anim.SetBool("Attacking", attacking);

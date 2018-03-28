@@ -30,6 +30,7 @@ public class MainMenuManager : MonoBehaviour {
         {
             net.networkPort = 7777;
             net.StartHost();
+            this.enabled = false;
         }
         
     }
@@ -42,6 +43,7 @@ public class MainMenuManager : MonoBehaviour {
         {
             net.networkPort = 7777;
             net.StartClient();
+            this.enabled = false;
         }
     }
 }

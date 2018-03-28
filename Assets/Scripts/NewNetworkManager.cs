@@ -11,6 +11,7 @@ public class NewNetworkManager : NetworkManager {
 	// Use this for initialization
 	void Start () {
         currentGamemode = sgm.currentGamemode;
+        
 	}
 
     public override void OnServerDisconnect(NetworkConnection conn)
