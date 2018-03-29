@@ -18,11 +18,16 @@ public class V2PlayerManager : NetworkBehaviour {
     GameObject cam;
     Transform lookatondeath;
     public MainMenuManager mmm;
-    
-    [SyncVar]
-    public string name;
 
-    [SyncVar]
+    [SyncVar] [SerializeField]
+    private string _name;
+    public string name
+    {
+        get { return _name; }
+        set { _name = value; }
+    }
+
+    [SyncVar] 
     private bool _isDead = true;
     public bool isDead
     {
@@ -48,13 +53,16 @@ public class V2PlayerManager : NetworkBehaviour {
             {
                 smr.enabled = false;
             }
+            
         }
 
         else
         {
-            name = mmm.currentName;
             CmdPlayerJoined();
+            name = mmm.nameIn.text;
         }
+
+
 
 
         if (isDead == false)

@@ -6,7 +6,8 @@ using UnityEngine.Networking;
 public class NewNetworkManager : NetworkManager {
 
     Assets.Scripts.IGamemode currentGamemode;
-    public ServerGameManager sgm; 
+    public ServerGameManager sgm;
+
 
 	// Use this for initialization
 	void Start () {

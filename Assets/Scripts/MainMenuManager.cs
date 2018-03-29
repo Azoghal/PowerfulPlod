@@ -46,4 +46,6 @@ public class MainMenuManager : MonoBehaviour {
             transform.position = new Vector3(10000, 0, 0);
         }
     }
+
+    
 }
