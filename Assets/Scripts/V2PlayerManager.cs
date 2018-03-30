@@ -74,7 +74,7 @@ public class V2PlayerManager : NetworkBehaviour {
 
     public void setUsername()
     {
-        _username = mmm.currentName;
+        this.CmdSetName(mmm.currentName);
     }
 
     [Command]
@@ -139,6 +139,18 @@ public class V2PlayerManager : NetworkBehaviour {
         }
         
 
+    }
+
+    [ClientRpc]
+    public void RpcChangeName(string name)
+    {
+        _username = name;
+    }
+
+    [Command]
+    public void CmdSetName(string name)
+    {
+        this.RpcChangeName(name);
     }
 
     // write ienumerator to spawn
