@@ -56,11 +56,11 @@ public class V2PlayerManager : NetworkBehaviour {
         else
         {
             CmdPlayerJoined();
-            
+            setUsername();
         }
 
-
-
+        
+        
 
         if (isDead == false)
         {
@@ -157,11 +157,6 @@ public class V2PlayerManager : NetworkBehaviour {
 
     private void Update()
     {
-        if (Input.GetKeyDown("k") && isLocalPlayer)
-        {
-            Debug.Log("big gay");
-            setUsername();
-        }
 
         Debug.Log("uname: "+_username);
         
