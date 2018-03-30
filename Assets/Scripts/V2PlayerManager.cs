@@ -21,11 +21,6 @@ public class V2PlayerManager : NetworkBehaviour {
 
     [SyncVar] [SerializeField]
     private string _username;
-    public string username
-    {
-        get { return _username; }
-        set { _username = value; }
-    }
 
     [SyncVar] 
     private bool _isDead = true;
@@ -79,7 +74,7 @@ public class V2PlayerManager : NetworkBehaviour {
 
     public void setUsername()
     {
-        username = mmm.currentName;
+        _username = mmm.currentName;
     }
 
     [Command]
