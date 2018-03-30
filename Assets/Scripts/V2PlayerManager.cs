@@ -18,6 +18,7 @@ public class V2PlayerManager : NetworkBehaviour {
     GameObject cam;
     Transform lookatondeath;
     public MainMenuManager mmm;
+    public GameObject namebar;
 
     [SyncVar] 
     private string _username;
@@ -50,13 +51,14 @@ public class V2PlayerManager : NetworkBehaviour {
             {
                 smr.enabled = false;
             }
-            
+            namebar.GetComponent<TextMesh>().text = _username;
         }
 
         else
         {
             CmdPlayerJoined();
             setUsername();
+            namebar.GetComponent<TextMesh>().text = _username;
         }
 
         
@@ -75,6 +77,7 @@ public class V2PlayerManager : NetworkBehaviour {
     public void setUsername()
     {
         this.CmdSetName(mmm.currentName);
+
     }
 
     [Command]
@@ -145,6 +148,7 @@ public class V2PlayerManager : NetworkBehaviour {
     public void RpcChangeName(string name)
     {
         _username = name;
+        namebar.GetComponent<TextMesh>().text = _username;
     }
 
     [Command]
