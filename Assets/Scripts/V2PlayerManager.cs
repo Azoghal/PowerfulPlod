@@ -19,7 +19,7 @@ public class V2PlayerManager : NetworkBehaviour {
     Transform lookatondeath;
     public MainMenuManager mmm;
 
-    [SyncVar] [SerializeField]
+    [SyncVar] 
     private string _username;
 
     [SyncVar] 
