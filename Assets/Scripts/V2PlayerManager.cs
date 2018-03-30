@@ -35,6 +35,8 @@ public class V2PlayerManager : NetworkBehaviour {
         protected set { _isDead = value; }
     }
 
+
+
     void Start () {
         //isDead = false;
         
@@ -59,7 +61,7 @@ public class V2PlayerManager : NetworkBehaviour {
         else
         {
             CmdPlayerJoined();
-            username = mmm.nameIn.text;
+            
         }
 
 
@@ -74,7 +76,12 @@ public class V2PlayerManager : NetworkBehaviour {
         
         
     }
-    
+
+    private void OnConnectedToServer()
+    {
+        username = mmm.currentName;
+    }
+
     [Command]
     void CmdPlayerJoined()
     {
