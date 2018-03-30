@@ -108,11 +108,6 @@ public class LMSGameMode : NetworkBehaviour, Assets.Scripts.IGamemode {
 
     }
 
-    private void OnPlayerDisconnected(NetworkPlayer player)
-    {
-        playerLeft(null);
-    }
-
 
     void spawnAll()
     {

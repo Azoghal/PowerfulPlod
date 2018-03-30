@@ -150,6 +150,8 @@ public class V2PlayerManager : NetworkBehaviour {
             Debug.Log("big gay");
             setUsername();
         }
+
+        Debug.Log("uname: "+_username);
         
     }
 
