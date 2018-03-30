@@ -20,11 +20,11 @@ public class V2PlayerManager : NetworkBehaviour {
     public MainMenuManager mmm;
 
     [SyncVar] [SerializeField]
-    private string _name;
-    public string name
+    private string _username;
+    public string username
     {
-        get { return _name; }
-        set { _name = value; }
+        get { return _username; }
+        set { _username = value; }
     }
 
     [SyncVar] 
