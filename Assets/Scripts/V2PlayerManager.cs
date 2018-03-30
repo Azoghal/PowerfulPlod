@@ -79,6 +79,7 @@ public class V2PlayerManager : NetworkBehaviour {
 
     private void OnConnectedToServer()
     {
+        Debug.Log("yet");
         username = mmm.currentName;
     }
 
