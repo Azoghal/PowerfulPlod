@@ -162,8 +162,6 @@ public class V2PlayerManager : NetworkBehaviour {
     private void Update()
     {
 
-        Debug.Log("uname: "+_username);
-        
     }
 
     // set random respawn position when dies
