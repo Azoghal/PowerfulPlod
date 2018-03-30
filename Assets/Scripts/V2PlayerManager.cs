@@ -59,7 +59,7 @@ public class V2PlayerManager : NetworkBehaviour {
         else
         {
             CmdPlayerJoined();
-            name = mmm.nameIn.text;
+            username = mmm.nameIn.text;
         }
 
 
