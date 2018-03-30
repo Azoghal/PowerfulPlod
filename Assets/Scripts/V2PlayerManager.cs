@@ -77,9 +77,8 @@ public class V2PlayerManager : NetworkBehaviour {
         
     }
 
-    private void OnConnectedToServer()
+    public void setUsername()
     {
-        Debug.Log("yet");
         username = mmm.currentName;
     }
 
@@ -151,7 +150,11 @@ public class V2PlayerManager : NetworkBehaviour {
 
     private void Update()
     {
-        
+        if (Input.GetKeyDown("k") && isLocalPlayer)
+        {
+            Debug.Log("big gay");
+            setUsername();
+        }
         
     }
 
