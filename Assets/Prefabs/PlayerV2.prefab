@@ -111,6 +111,7 @@ GameObject:
   - component: {fileID: 4858172138669020}
   - component: {fileID: 23316795794464054}
   - component: {fileID: 102688026325134560}
+  - component: {fileID: 114989461418776914}
   m_Layer: 0
   m_Name: usernameBar
   m_TagString: Untagged
@@ -1325,6 +1326,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 95666477762155388}
   playing: 0
+--- !u!114 &114989461418776914
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1182756018945324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c07ad1014cf95ce43b26f1ac1c4e9767, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!124 &124904404770547814
 Behaviour:
   m_ObjectHideFlags: 1
