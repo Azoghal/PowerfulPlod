@@ -122,7 +122,7 @@ public class V2PlayerManager : NetworkBehaviour {
         {
             isDead = true;
             Debug.Log("killed plater");
-            ComponentsDie();
+            ComponentsDie(); // get singleton.gameobject.script.isbeingused @:)
             Transform _spawnPoint = NetworkManager.singleton.GetStartPosition();
             transform.position = _spawnPoint.position;
             transform.rotation = _spawnPoint.rotation;

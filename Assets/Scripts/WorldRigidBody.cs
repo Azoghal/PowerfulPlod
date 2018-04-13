@@ -7,6 +7,7 @@ public class WorldRigidBody : NetworkBehaviour {
 
     [SerializeField]
     int powerModifier;
+    public GameObject spawner;
 	// Use this for initialization
 	void Start () {
         powerModifier = 4;
@@ -30,8 +31,8 @@ public class WorldRigidBody : NetworkBehaviour {
         Rigidbody rb = GetComponent<Rigidbody>();
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
-        Transform _spawnPoint = NetworkManager.singleton.GetStartPosition();
-        transform.position = _spawnPoint.position + new Vector3(0,4,0);
+        Transform _spawnPoint = spawner.transform;
+        transform.position = _spawnPoint.position;
 
     }
 
