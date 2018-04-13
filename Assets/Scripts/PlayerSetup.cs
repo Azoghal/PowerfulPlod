@@ -13,7 +13,7 @@ public class PlayerSetup : NetworkBehaviour {
 	void Start () {
         if (isLocalPlayer)
         {
-            sceneCamera = Camera.main;
+            sceneCamera = GameObject.FindGameObjectWithTag("SceneCamera").GetComponent<Camera>() ;
             if (sceneCamera != null)
             {
                 sceneCamera.gameObject.SetActive(false);

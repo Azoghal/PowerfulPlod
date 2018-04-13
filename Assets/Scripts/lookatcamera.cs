@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
 public class lookatcamera : MonoBehaviour {
 
@@ -13,5 +14,7 @@ public class lookatcamera : MonoBehaviour {
 	void Update () {
         Transform temp = Camera.main.transform;
         transform.LookAt(temp);
+
+       
 	}
 }
