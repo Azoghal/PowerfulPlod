@@ -8,6 +8,7 @@ TagManager:
   - DeathBox
   - mainMenu
   - SceneCamera
+  - spawnpoint
   layers:
   - Default
   - TransparentFX

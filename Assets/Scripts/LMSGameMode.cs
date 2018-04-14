@@ -7,6 +7,7 @@ public class LMSGameMode : NetworkBehaviour, Assets.Scripts.IGamemode {
 
     int ConnectedPlayerCount;
     V2PlayerManager[] Players;
+    GameObject[] spawnpoints;
     GameObject[] temp;
     float respawnTime;
     int PlayersAlive;
@@ -20,6 +21,7 @@ public class LMSGameMode : NetworkBehaviour, Assets.Scripts.IGamemode {
             ConnectedPlayerCount = 0;
             respawnTime = 3;
         }
+        spawnpoints = GameObject.FindGameObjectsWithTag("spawnpoint");
 	}
 
     public void handleLoading()
@@ -115,6 +117,10 @@ public class LMSGameMode : NetworkBehaviour, Assets.Scripts.IGamemode {
         for (int i = 0; i < Players.Length; i++)
         {
             StartCoroutine(handlePlayerSpawn(Players[i]));
+        }
+        for (int i = 0; i < spawnpoints.Length; i++)
+        {
+            spawnpoints[i].GetComponent<spawnPoint>().open = true;
         }
     }
 

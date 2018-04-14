@@ -10,7 +10,7 @@ public class V2PlayerManager : NetworkBehaviour {
     // meshrenderer, box collider in
     // also set gravity
     ServerGameManager servergamemanager;
-
+    GameObject[] spawnpoints;
     Rigidbody rb;
     BoxCollider bc;
     SkinnedMeshRenderer smr;
@@ -35,7 +35,7 @@ public class V2PlayerManager : NetworkBehaviour {
 
     void Start () {
         //isDead = false;
-        
+        spawnpoints = GameObject.FindGameObjectsWithTag("spawnpoint");
         rb = transform.GetComponent<Rigidbody>();
         bc = transform.GetComponent<BoxCollider>();
         smr = transform.GetChild(0).GetChild(1).GetComponent<SkinnedMeshRenderer>();
@@ -123,9 +123,20 @@ public class V2PlayerManager : NetworkBehaviour {
             isDead = true;
             Debug.Log("killed plater");
             ComponentsDie(); // get singleton.gameobject.script.isbeingused @:)
-            Transform _spawnPoint = NetworkManager.singleton.GetStartPosition();
-            transform.position = _spawnPoint.position;
-            transform.rotation = _spawnPoint.rotation;
+
+            for (int i = 0; i < spawnpoints.Length; i++)
+            {
+                spawnPoint sp = spawnpoints[i].GetComponent<spawnPoint>();
+                if (sp.open == true)
+                {
+                    Transform _spawnPoint = spawnpoints[i].transform;
+                    transform.position = _spawnPoint.position;
+                    transform.rotation = _spawnPoint.rotation;
+                    sp.open = false;
+                }
+            }
+            
+            
         }
         
     }
