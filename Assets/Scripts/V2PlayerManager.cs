@@ -17,6 +17,7 @@ public class V2PlayerManager : NetworkBehaviour {
     PlayerController pc;
     GameObject cam;
     Transform lookatondeath;
+    spawnPoint sp;
     public MainMenuManager mmm;
     public GameObject namebar;
 
@@ -126,13 +127,14 @@ public class V2PlayerManager : NetworkBehaviour {
 
             for (int i = 0; i < spawnpoints.Length; i++)
             {
-                spawnPoint sp = spawnpoints[i].GetComponent<spawnPoint>();
+                sp = spawnpoints[i].GetComponent<spawnPoint>();
                 if (sp.open == true)
                 {
                     Transform _spawnPoint = spawnpoints[i].transform;
                     transform.position = _spawnPoint.position;
                     transform.rotation = _spawnPoint.rotation;
-                    sp.open = false;
+                    sp.open = false; // fill first empty spawn and close it
+                    break;
                 }
             }
             
@@ -150,6 +152,8 @@ public class V2PlayerManager : NetworkBehaviour {
         {
             isDead = false;
             ComponentsLive();
+            sp.open = true; //spawn and open spawnpoint
+
         }
         
 

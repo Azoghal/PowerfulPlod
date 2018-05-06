@@ -1,13 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class spawnPoint : MonoBehaviour {
+public class spawnPoint : NetworkBehaviour {
 
-    public bool open;
+    [SyncVar]
+    public bool open = true;
+    
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         open = true;
 	}
 	
